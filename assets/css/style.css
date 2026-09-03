@@ -1,0 +1,451 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@layer reset, base, components, states, responsive;
+
+@layer reset {
+  /* =========================================================
+   MODERN CSS RESET
+   Reset de estilos moderno y minimalista para proyectos web
+   ========================================================= */
+
+  /* 1. Uso más intuitivo del box-model en todo el proyecto */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 2. Elimina márgenes y paddings por defecto */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 3. Permite que los elementos de bloque de tipografía tengan un
+      wrap más agradable y controlado */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    hanging-punctuation: first last;
+  }
+
+  /* 4. Comportamiento de scroll suave, respetando accesibilidad
+      (ver media query al final) */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 5. Configuración base del body */
+  body {
+    min-height: 100svh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+  }
+
+  /* 6. Mejora la tipografía en encabezados y controla el equilibrio
+      del texto (soportado en navegadores modernos) */
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.1;
+    /* text-wrap: balance; */
+  }
+
+  p,
+  li,
+  figcaption {
+    text-wrap: pretty;
+  }
+
+  /* 7. Evita que los títulos y textos largos rompan el layout */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  dl,
+  dd {
+    overflow-wrap: break-word;
+  }
+
+  /* 8. Elimina estilos por defecto de listas cuando llevan
+      atributo role (mejora accesibilidad al no perder semántica) */
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+  }
+
+  /* 9. Los elementos multimedia son responsivos por defecto */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 10. Hereda tipografía en formularios (inputs, botones, etc.) */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* 11. Evita desbordes en textarea y facilita el redimensionado */
+  textarea {
+    resize: vertical;
+  }
+
+  /* 12. Quita estilos por defecto de botones para poder
+       personalizarlos libremente */
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* 13. Enlaces sin estilos de subrayado/color por defecto */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* 14. Tablas con bordes colapsados y ancho completo por defecto */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  /* 15. Elementos con atributo "hidden" siempre ocultos */
+  [hidden] {
+    display: none !important;
+  }
+
+  /* 16. Mejora el foco visible para accesibilidad con teclado */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* 17. Elimina el resaltado táctil azul en móviles (iOS/Android) */
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 18. Root stacking context, útil para animaciones y overlays */
+  #root,
+  #__next {
+    isolation: isolate;
+  }
+
+  /* 19. Respeta las preferencias de accesibilidad del usuario:
+       reduce animaciones y scroll suave si así lo solicita */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --color-white: hsl(0, 0%, 100%);
+    --color-gray: rgba(255, 255, 255, 0.7);
+    --color-blue-200: hsl(224, 100%, 95%);
+    --color-blue-400: hsl(220, 100%, 64%);
+    --color-blue-600: hsl(228, 100%, 60%);
+    --color-blue-700: hsl(228, 99%, 58%);
+    --color-black: hsl(0, 0%, 0%);
+
+    --border-color: rgb(255 255 255 / 0.14);
+
+    --border: 1px solid var(--color-blue-400);
+
+    --fz-sm: 14px;
+    --fz-nm: 17px;
+
+    --fw-400: 400;
+    --fw-500: 500;
+
+    --sp-xxs: 0.25rem;
+    --sp-xs: 0.5rem;
+    --sp-sm: 0.75rem;
+    --sp-nm: 1rem;
+    --sp-lg: 1.5rem;
+    --sp-xl: 2rem;
+    --sp-xxl: 3rem;
+
+    --font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    color: var(--color-white);
+    background-color: var(--color-blue-700);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* =========================
+  SITE
+  ========================= */
+  .site {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 4rem minmax(0, 1fr) 4rem;
+  }
+
+  /* =========================
+  SITE HEADER
+  ========================= */
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    background-color: var(--color-blue-700);
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--border);
+    padding-inline: var(--sp-lg);
+  }
+
+  .site-header__button {
+    list-style-type: none;
+    cursor: pointer;
+  }
+
+  .site-header__icon--close {
+    display: none;
+  }
+
+  .site-header__menu[open] .site-header__icon--menu {
+    display: none;
+  }
+  .site-header__menu[open] .site-header__icon--close {
+    display: block;
+  }
+
+  .site-header__nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4rem;
+    height: calc(100svh - 4rem);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .site-header__list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--sp-xxl);
+    background-color: var(--color-blue-700);
+    list-style-type: none;
+    gap: var(--sp-xxs);
+  }
+  .site-header__link {
+    display: inline-block;
+    font-size: 2rem;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1rem;
+    }
+  }
+
+  /* =========================
+  LOGO
+  ========================= */
+  .logo {
+    display: flex;
+    align-items: center;
+    column-gap: var(--sp-xxs);
+  }
+  .logo__dot {
+    display: inline-block;
+    width: 9.5px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-white);
+    border-radius: 50%;
+  }
+  .logo__text {
+    font-size: var(--fz-sm);
+  }
+
+  /* =========================
+  HERO SECTION
+  ========================= */
+  .hero {
+    padding-inline: var(--sp-xl);
+    min-height: 21rem;
+    display: grid;
+    align-items: center;
+    border-bottom: var(--border);
+  }
+
+  .hero__content {
+    max-width: 19rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 11.7vw, 4rem);
+    margin-bottom: var(--sp-lg);
+    font-weight: var(--fw-400);
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+  }
+  .hero__desktop-break {
+    display: none;
+  }
+  .hero__description {
+    line-height: 1.6;
+    color: var(--color-gray);
+    word-spacing: 0.05rem;
+    font-size: var(--fz-nm);
+  }
+
+  /* =========================
+  STAT
+  ========================= */
+  .stat {
+    padding: var(--sp-lg);
+    min-height: 18rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--color-blue-600);
+    }
+  }
+  .stat:not(:last-child) {
+    border-bottom: var(--border);
+  }
+  .stat__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .stat__value {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: var(--fw-500);
+    letter-spacing: 0.05em;
+  }
+  .stat__title {
+    font-weight: var(--fw-500);
+    font-size: var(--fz-nm);
+  }
+  .stat__description {
+    color: var(--color-gray);
+    font-size: var(--fz-sm);
+    line-height: 1.8;
+  }
+
+  /* =========================
+  SITE FOOTER
+  ========================= */
+  .site-footer {
+    border-top: var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: var(--sp-xl);
+    font-size: var(--fz-sm);
+    color: var(--color-white);
+  }
+}
+
+@layer states {
+  .is-hidden {
+    display: none;
+  }
+}
+
+@layer responsive {
+  /* =========================
+    RESPONSIVE
+    ========================= */
+  /* MEDIA QUERY 500PX TABLE - IPAD */
+  @media screen and (min-width: 500px) {
+    .impact {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat:nth-child(3) {
+      border-bottom: initial;
+    }
+    .stat:nth-child(odd) {
+      border-right: var(--border);
+    }
+    .hero__desktop-break {
+      display: block;
+    }
+
+    .hero__content {
+      max-width: initial;
+    }
+
+    .site-footer {
+      flex-direction: initial;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .site-header__list {
+      margin-left: auto;
+      padding-inline: var(--sp-xxl);
+      max-width: 20rem;
+      height: 100%;
+      justify-content: flex-start;
+      align-items: flex-end;
+    }
+  }
+
+  /* MEDIA QUERY 1000PX DESKTOP */
+  @media screen and (min-width: 1000px) {
+    .page-content {
+      display: flex;
+    }
+    .hero {
+      flex: 0 0 40%;
+      border-bottom: initial;
+      border-right: var(--border);
+      padding-inline: var(--sp-xxl);
+    }
+    .site-header,
+    .site-footer {
+      padding-inline: var(--sp-xxl);
+    }
+    .hero__content {
+      max-width: 25rem;
+    }
+    .impact {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      flex: 0 0 60%;
+    }
+  }
+}
