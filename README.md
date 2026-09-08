@@ -51,17 +51,6 @@ Este proyecto consiste en una landing page construida únicamente con **HTML** y
 
 ---
 
-## 🤝 Contribución
-
-Este es un proyecto de práctica. Si deseas sugerir mejoras:
-
-1. Haz un fork del repositorio.
-2. Crea una rama (`git checkout -b mejora-grid`).
-3. Realiza tus cambios y haz commit.
-4. Abre un Pull Request.
-
----
-
 ## 📄 Licencia
 
 Este proyecto está bajo la licencia MIT.
